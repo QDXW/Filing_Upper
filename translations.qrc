@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/translations">
+        <file>i18n/Lidar_en.qm</file>
+        <file>Image/Butter.png</file>
+        <file>Image/Butter_1.png</file>
+        <file>Image/20120319165921883.jpg</file>
+        <file>Image/20120319165921883.png</file>
+        <file>Image/start.png</file>
+        <file>Image/starrt.png</file>
+    </qresource>
+    <qresource prefix="/"/>
+</RCC>

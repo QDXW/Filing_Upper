@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>blue.css</file>
+        <file>darkblack.css</file>
+        <file>darkblue.css</file>
+    </qresource>
+</RCC>
