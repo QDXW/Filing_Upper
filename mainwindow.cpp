@@ -29,17 +29,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(SerialPort,SIGNAL(errorOccurred(QSerialPort::SerialPortError)),this,SLOT(Rrrorhandle(QSerialPort::SerialPortError)));
 
-    ui->Injuct_Count_1->setValidator(new QIntValidator(1, 500, this));
-    ui->Injuct_Count_2->setValidator(new QIntValidator(1, 500, this));
-    ui->Injuct_Count_3->setValidator(new QIntValidator(1, 500, this));
-    ui->Injuct_Count_4->setValidator(new QIntValidator(1, 500, this));
-    ui->Injuct_Count_5->setValidator(new QIntValidator(1, 100, this));
-    ui->Injuct_Count_6->setValidator(new QIntValidator(1, 100, this));
-    ui->Injuct_Count_7->setValidator(new QIntValidator(1, 100, this));
+    ui->Injuct_Count_R1->setValidator(new QIntValidator(1, 500, this));
+    ui->Injuct_Count_R2->setValidator(new QIntValidator(1, 500, this));
+    ui->Injuct_Count_M->setValidator(new QIntValidator(1, 500, this));
+    ui->Injuct_Count_W1->setValidator(new QIntValidator(1, 500, this));
+    ui->Injuct_Count_W2->setValidator(new QIntValidator(1, 100, this));
+    ui->Injuct_Count_W3->setValidator(new QIntValidator(1, 100, this));
+    ui->Injuct_Count_W4->setValidator(new QIntValidator(1, 100, this));
+    ui->Injuct_Count_W5->setValidator(new QIntValidator(1, 100, this));
+    ui->Injuct_Count_W6->setValidator(new QIntValidator(1, 100, this));
+    ui->Injuct_Count_Base->setValidator(new QIntValidator(1, 100, this));
 
-    QRegExp Wash_Time("[1-9][0-9]");
-    QValidator *Wash = new QRegExpValidator(Wash_Time,this);
-    ui->Wash_Time ->setValidator(Wash);
     ui->groupBox->setEnabled(false);
 }
 
@@ -267,24 +267,6 @@ void MainWindow::ReadData()
     stdid = RecvBuff[4];
     switch(stdid)
     {
-    case CMD_CODE_BUMP_INT:
-        if(RecvBuff[5])
-        {
-            ui->BUMP_INT->setText(tr("正在初始化"));
-        }
-        else
-        {
-            ui->BUMP_INT->setText(tr("初始化泵"));
-        }
-        break;
-
-    case CMD_CODE_INJECT:
-        if(RecvBuff[5])
-            ui->L100_INJECT->setText(tr("正在注液"));
-        else
-            ui->L100_INJECT->setText(tr("开始注液"));
-        break;
-
     case CMD_CODE_BUMP_FILLING:
         if(RecvBuff[5])
             ui->L100_Filling->setText(tr("正在罐装"));
@@ -292,50 +274,51 @@ void MainWindow::ReadData()
             ui->L100_Filling->setText(tr("开始罐装"));
         break;
 
-    case CMD_CODE_INFUSION:
-        if(RecvBuff[5])
-            ui->Infusion->setText(tr("正在抽液"));
-        else
-            ui->Infusion->setText(tr("开始抽液"));
-        break;
-
     case CMD_CODE_WASH:
         if(RecvBuff[5])
-            ui->RECYCLE->setText(tr("正在清洗"));
+            ui->PUMP_WASH->setText(tr("正在清洗"));
         else
-            ui->RECYCLE->setText(tr("开始清洗"));
+            ui->PUMP_WASH->setText(tr("开始清洗"));
         break;
 
-    case CMD_CODE_INJUCET_VOLUME1:
-        QMessageBox::warning(this,tr("温馨提醒"),tr("泵1注液量设置成功！"));
+    case CMD_CODE_INJUCET_VOLUME_R1:
+        QMessageBox::warning(this,tr("温馨提醒"),tr("R1注液量设置成功！"));
         break;
 
-    case CMD_CODE_INJUCET_VOLUME2:
-       QMessageBox::warning(this,tr("温馨提醒"),tr("泵2注液量设置成功！"));
+    case CMD_CODE_INJUCET_VOLUME_R2:
+       QMessageBox::warning(this,tr("温馨提醒"),tr("R2注液量设置成功！"));
         break;
 
-    case CMD_CODE_INJUCET_VOLUME3:
-        QMessageBox::warning(this,tr("温馨提醒"),tr("泵3注液量设置成功！"));
+    case CMD_CODE_INJUCET_VOLUME_M:
+        QMessageBox::warning(this,tr("温馨提醒"),tr("M注液量设置成功！"));
         break;
 
-    case CMD_CODE_INJUCET_VOLUME4:
-        QMessageBox::warning(this,tr("温馨提醒"),tr("泵4注液量设置成功！"));
+    case CMD_CODE_INJUCET_VOLUME_W1:
+        QMessageBox::warning(this,tr("温馨提醒"),tr("W1注液量设置成功！"));
         break;
 
-    case CMD_CODE_INJUCET_VOLUME5:
-       QMessageBox::warning(this,tr("温馨提醒"),tr("泵5注液量设置成功！"));
+    case CMD_CODE_INJUCET_VOLUME_W2:
+       QMessageBox::warning(this,tr("温馨提醒"),tr("W2注液量设置成功！"));
         break;
 
-    case CMD_CODE_INJUCET_VOLUME6:
-        QMessageBox::warning(this,tr("温馨提醒"),tr("泵6注液量设置成功！"));
+    case CMD_CODE_INJUCET_VOLUME_W3:
+        QMessageBox::warning(this,tr("温馨提醒"),tr("W3注液量设置成功！"));
         break;
 
-    case CMD_CODE_INJUCET_VOLUME7:
-        QMessageBox::warning(this,tr("温馨提醒"),tr("泵7注液量设置成功！"));
+    case CMD_CODE_INJUCET_VOLUME_W4:
+        QMessageBox::warning(this,tr("温馨提醒"),tr("W4注液量设置成功！"));
         break;
 
-    case CMD_CODE_INJUCET_TIME:
-        QMessageBox::warning(this,tr("温馨提醒"),tr("灌装时间设置成功！"));
+    case CMD_CODE_INJUCET_VOLUME_W5:
+        QMessageBox::warning(this,tr("温馨提醒"),tr("W5注液量设置成功！"));
+        break;
+
+    case CMD_CODE_INJUCET_VOLUME_W6:
+        QMessageBox::warning(this,tr("温馨提醒"),tr("W6注液量设置成功！"));
+        break;
+
+    case CMD_CODE_INJUCET_VOLUME_BASE:
+        QMessageBox::warning(this,tr("温馨提醒"),tr("底物注液量设置成功！"));
         break;
 
         default:
@@ -344,25 +327,10 @@ void MainWindow::ReadData()
      ReadBuff.clear();
 }
 
-void MainWindow::on_Infusion_clicked()
+void MainWindow::on_PUMP_WASH_clicked()
 {
     quint8 DATA = 0;
-    if(ui->Infusion->text()==tr("开始抽液"))
-    {
-       DATA = 1;
-       CommandSend(1,CMD_TYPE_APP, CMD_CODE_INFUSION,&DATA);
-    }
-    else
-    {
-       DATA = 0;
-       CommandSend(1,CMD_TYPE_APP, CMD_CODE_INFUSION,&DATA);
-    }
-}
-
-void MainWindow::on_RECYCLE_clicked()
-{
-    quint8 DATA = 0;
-    if(ui->RECYCLE->text()==tr("开始清洗"))
+    if(ui->PUMP_WASH->text()==tr("开始清洗"))
     {
 //       DATA = ui->Wash_Time->text().toInt();
        CommandSend(1,CMD_TYPE_APP, CMD_CODE_WASH,&DATA);
@@ -374,87 +342,99 @@ void MainWindow::on_RECYCLE_clicked()
     }
 }
 
-void MainWindow::on_L100_INJECT_clicked()
-{
-    quint8 DATA = 0;
-    if(ui->L100_INJECT->text()==tr("开始注液"))
-    {
-       DATA = 1;
-       CommandSend(1,CMD_TYPE_APP, CMD_CODE_INJECT,&DATA); 
-    }
-    else
-    {
-        DATA = 0;
-        CommandSend(1,CMD_TYPE_APP, CMD_CODE_INJECT,&DATA);
-    }
-}
-
 void MainWindow::on_Quit_clicked()
 {
      this->close();
 }
 
-void MainWindow::on_Set_Injuct_1_clicked()
+void MainWindow::on_Set_Injuct_R1_clicked()
 {
     quint16 DATA = 0;
     quint8 Buf[2] = {0};
-    DATA = ui->Injuct_Count_1->text().toInt();
+    DATA = ui->Injuct_Count_R1->text().toInt();
     memcpy(Buf,&DATA,2);
-    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME1,Buf);
+    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_R1,Buf);
 }
 
-void MainWindow::on_Set_Injuct_2_clicked()
+void MainWindow::on_Set_Injuct_R2_clicked()
 {
     quint16 DATA = 0;
     quint8 Buf[2] = {0};
-    DATA = ui->Injuct_Count_2->text().toInt();
+    DATA = ui->Injuct_Count_R2->text().toInt();
     memcpy(Buf,&DATA,2);
-    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME2,Buf);
+    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_R2,Buf);
 }
 
-void MainWindow::on_Set_Injuct_3_clicked()
+void MainWindow::on_Set_Injuct_M_clicked()
 {
     quint16 DATA = 0;
     quint8 Buf[2] = {0};
-    DATA = ui->Injuct_Count_3->text().toInt();
+    DATA = ui->Injuct_Count_M->text().toInt();
     memcpy(Buf,&DATA,2);
-    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME3,Buf);
+    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_M,Buf);
 }
 
-void MainWindow::on_Set_Injuct_4_clicked()
+void MainWindow::on_Set_Injuct_W1_clicked()
 {
     quint16 DATA = 0;
     quint8 Buf[2] = {0};
-    DATA = ui->Injuct_Count_4->text().toInt();
+    DATA = ui->Injuct_Count_W1->text().toInt();
     memcpy(Buf,&DATA,2);
-    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME4,Buf);
+    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_W1,Buf);
 }
 
-void MainWindow::on_Set_Injuct_5_clicked()
+void MainWindow::on_Set_Injuct_W2_clicked()
 {
     quint16 DATA = 0;
     quint8 Buf[2] = {0};
-    DATA = ui->Injuct_Count_5->text().toInt();
+    DATA = ui->Injuct_Count_W2->text().toInt();
     memcpy(Buf,&DATA,2);
-    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME5,Buf);
+    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_W2,Buf);
 }
 
-void MainWindow::on_Set_Injuct_6_clicked()
+void MainWindow::on_Set_Injuct_W3_clicked()
 {
     quint16 DATA = 0;
     quint8 Buf[2] = {0};
-    DATA = ui->Injuct_Count_6->text().toInt();
+    DATA = ui->Injuct_Count_W3->text().toInt();
     memcpy(Buf,&DATA,2);
-    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME6,Buf);
+    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_W3,Buf);
 }
 
-void MainWindow::on_Set_Injuct_7_clicked()
+void MainWindow::on_Set_Injuct_W4_clicked()
 {
     quint16 DATA = 0;
     quint8 Buf[2] = {0};
-    DATA = ui->Injuct_Count_7->text().toInt();
+    DATA = ui->Injuct_Count_W4->text().toInt();
     memcpy(Buf,&DATA,2);
-    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME7,Buf);
+    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_W4,Buf);
+}
+
+void MainWindow::on_Set_Injuct_W5_clicked()
+{
+    quint16 DATA = 0;
+    quint8 Buf[2] = {0};
+    DATA = ui->Injuct_Count_W5->text().toInt();
+    memcpy(Buf,&DATA,2);
+    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_W5,Buf);
+}
+
+void MainWindow::on_Set_Injuct_W6_clicked()
+{
+    quint16 DATA = 0;
+    quint8 Buf[2] = {0};
+    DATA = ui->Injuct_Count_W6->text().toInt();
+    memcpy(Buf,&DATA,2);
+    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_W6,Buf);
+}
+
+void MainWindow::on_Set_Injuct_Base_clicked()
+{
+    quint16 DATA = 0;
+    quint8 Buf[2] = {0};
+    DATA = ui->Injuct_Count_Base->text().toInt();
+    memcpy(Buf,&DATA,2);
+    CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_BASE,Buf);
 }
 
 //void MainWindow::on_RETURN_ZERO_clicked()

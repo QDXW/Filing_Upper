@@ -122,8 +122,8 @@
    <widget class="QPushButton" name="Quit">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>700</y>
+      <x>0</x>
+      <y>710</y>
       <width>211</width>
       <height>91</height>
      </rect>
@@ -135,62 +135,13 @@
      <string>退出</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Infusion">
+   <widget class="QPushButton" name="PUMP_WASH">
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>460</y>
-      <width>221</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>华文楷体</family>
-      <pointsize>24</pointsize>
-      <weight>50</weight>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="text">
-     <string>开始抽液</string>
-    </property>
-    <property name="checkable">
-     <bool>false</bool>
-    </property>
-    <property name="autoRepeat">
-     <bool>false</bool>
-    </property>
-    <property name="autoRepeatDelay">
-     <number>1</number>
-    </property>
-    <property name="autoRepeatInterval">
-     <number>1</number>
-    </property>
-    <property name="autoDefault">
-     <bool>false</bool>
-    </property>
-    <property name="default">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="RECYCLE">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>470</y>
-      <width>211</width>
-      <height>91</height>
+      <x>0</x>
+      <y>560</y>
+      <width>251</width>
+      <height>111</height>
      </rect>
     </property>
     <property name="font">
@@ -206,55 +157,24 @@
      <string>开始清洗</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="L100_INJECT">
-    <property name="geometry">
-     <rect>
-      <x>1030</x>
-      <y>460</y>
-      <width>221</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>华文楷体</family>
-      <pointsize>22</pointsize>
-     </font>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="text">
-     <string>开始注液</string>
-    </property>
-    <property name="autoRepeatDelay">
-     <number>20</number>
-    </property>
-    <property name="autoRepeatInterval">
-     <number>20</number>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>70</y>
       <width>1231</width>
-      <height>371</height>
+      <height>471</height>
      </rect>
     </property>
     <property name="title">
      <string/>
     </property>
-    <widget class="QPushButton" name="Set_Injuct_3">
+    <widget class="QPushButton" name="Set_Injuct_M">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>70</x>
        <y>100</y>
-       <width>261</width>
+       <width>231</width>
        <height>81</height>
       </rect>
      </property>
@@ -268,10 +188,10 @@
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>设置注液量M</string>
+      <string>注液量M</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="Injuct_Count_5">
+    <widget class="QLineEdit" name="Injuct_Count_W2">
      <property name="geometry">
       <rect>
        <x>320</x>
@@ -293,12 +213,12 @@
       <string>50</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="Set_Injuct_6">
+    <widget class="QPushButton" name="Set_Injuct_W3">
      <property name="geometry">
       <rect>
-       <x>570</x>
+       <x>600</x>
        <y>190</y>
-       <width>261</width>
+       <width>231</width>
        <height>81</height>
       </rect>
      </property>
@@ -312,16 +232,16 @@
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>设置注液量W3</string>
+      <string>注液量W3</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="Set_Injuct_2">
+    <widget class="QPushButton" name="Set_Injuct_R2">
      <property name="geometry">
       <rect>
-       <x>570</x>
-       <y>10</y>
-       <width>261</width>
-       <height>81</height>
+       <x>600</x>
+       <y>20</y>
+       <width>231</width>
+       <height>71</height>
       </rect>
      </property>
      <property name="font">
@@ -334,15 +254,15 @@
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>设置注液量R2</string>
+      <string>注液量R2</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="Set_Injuct_7">
+    <widget class="QPushButton" name="Set_Injuct_W4">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>70</x>
        <y>280</y>
-       <width>261</width>
+       <width>231</width>
        <height>81</height>
       </rect>
      </property>
@@ -356,10 +276,10 @@
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>设置注液量B</string>
+      <string>注液量W4</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="Injuct_Count_6">
+    <widget class="QLineEdit" name="Injuct_Count_W3">
      <property name="geometry">
       <rect>
        <x>850</x>
@@ -381,12 +301,12 @@
       <string>50</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="Set_Injuct_4">
+    <widget class="QPushButton" name="Set_Injuct_W1">
      <property name="geometry">
       <rect>
-       <x>570</x>
+       <x>600</x>
        <y>100</y>
-       <width>261</width>
+       <width>231</width>
        <height>81</height>
       </rect>
      </property>
@@ -400,10 +320,10 @@
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>设置注液量W1</string>
+      <string>注液量W1</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="Injuct_Count_7">
+    <widget class="QLineEdit" name="Injuct_Count_W4">
      <property name="geometry">
       <rect>
        <x>320</x>
@@ -425,7 +345,7 @@
       <string>50</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="Injuct_Count_2">
+    <widget class="QLineEdit" name="Injuct_Count_R2">
      <property name="geometry">
       <rect>
        <x>850</x>
@@ -450,12 +370,12 @@
       <string>300</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="Set_Injuct_5">
+    <widget class="QPushButton" name="Set_Injuct_W2">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>70</x>
        <y>190</y>
-       <width>261</width>
+       <width>231</width>
        <height>81</height>
       </rect>
      </property>
@@ -469,10 +389,10 @@
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>设置注液量W2</string>
+      <string>注液量W2</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="Injuct_Count_4">
+    <widget class="QLineEdit" name="Injuct_Count_W1">
      <property name="geometry">
       <rect>
        <x>850</x>
@@ -494,7 +414,7 @@
       <string>300</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="Injuct_Count_3">
+    <widget class="QLineEdit" name="Injuct_Count_M">
      <property name="geometry">
       <rect>
        <x>320</x>
@@ -516,7 +436,7 @@
       <string>300</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="Injuct_Count_1">
+    <widget class="QLineEdit" name="Injuct_Count_R1">
      <property name="geometry">
       <rect>
        <x>320</x>
@@ -541,12 +461,12 @@
       <string>300</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="Set_Injuct_1">
+    <widget class="QPushButton" name="Set_Injuct_R1">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>70</x>
        <y>10</y>
-       <width>261</width>
+       <width>231</width>
        <height>81</height>
       </rect>
      </property>
@@ -560,51 +480,149 @@
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>设置注液量R1</string>
+      <string>注液量R1</string>
      </property>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="BUMP_INT">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>470</y>
-      <width>231</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>华文楷体</family>
-      <pointsize>24</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="text">
-     <string>初始化泵</string>
-    </property>
-    <property name="checkable">
-     <bool>false</bool>
-    </property>
-    <property name="autoExclusive">
-     <bool>false</bool>
-    </property>
-    <property name="autoRepeatDelay">
-     <number>300</number>
-    </property>
-    <property name="autoRepeatInterval">
-     <number>100</number>
-    </property>
+    <widget class="QPushButton" name="Set_Injuct_Base">
+     <property name="geometry">
+      <rect>
+       <x>600</x>
+       <y>370</y>
+       <width>231</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文楷体</family>
+       <pointsize>22</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>注液量底物</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="Injuct_Count_Base">
+     <property name="geometry">
+      <rect>
+       <x>850</x>
+       <y>390</y>
+       <width>181</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Times New Roman</family>
+       <pointsize>24</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>50</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Set_Injuct_W5">
+     <property name="geometry">
+      <rect>
+       <x>600</x>
+       <y>280</y>
+       <width>231</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文楷体</family>
+       <pointsize>22</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>注液量W5</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="Injuct_Count_W5">
+     <property name="geometry">
+      <rect>
+       <x>850</x>
+       <y>300</y>
+       <width>181</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Times New Roman</family>
+       <pointsize>24</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>50</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Set_Injuct_W6">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>370</y>
+       <width>231</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文楷体</family>
+       <pointsize>22</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>注液量W6</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="Injuct_Count_W6">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>390</y>
+       <width>181</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Times New Roman</family>
+       <pointsize>24</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>50</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QPushButton" name="L100_Filling">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>520</x>
       <y>590</y>
-      <width>211</width>
-      <height>91</height>
+      <width>331</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="font">
@@ -655,23 +673,21 @@
   <tabstop>Connect_Btn</tabstop>
   <tabstop>COMSelectcomboBox</tabstop>
   <tabstop>Quit</tabstop>
-  <tabstop>Infusion</tabstop>
-  <tabstop>RECYCLE</tabstop>
-  <tabstop>L100_INJECT</tabstop>
-  <tabstop>Set_Injuct_3</tabstop>
-  <tabstop>Injuct_Count_5</tabstop>
-  <tabstop>Set_Injuct_6</tabstop>
-  <tabstop>Set_Injuct_2</tabstop>
-  <tabstop>Set_Injuct_7</tabstop>
-  <tabstop>Injuct_Count_6</tabstop>
-  <tabstop>Set_Injuct_4</tabstop>
-  <tabstop>Injuct_Count_7</tabstop>
-  <tabstop>Injuct_Count_2</tabstop>
-  <tabstop>Set_Injuct_5</tabstop>
-  <tabstop>Injuct_Count_4</tabstop>
-  <tabstop>Injuct_Count_3</tabstop>
-  <tabstop>Injuct_Count_1</tabstop>
-  <tabstop>Set_Injuct_1</tabstop>
+  <tabstop>PUMP_WASH</tabstop>
+  <tabstop>Set_Injuct_M</tabstop>
+  <tabstop>Injuct_Count_W2</tabstop>
+  <tabstop>Set_Injuct_W3</tabstop>
+  <tabstop>Set_Injuct_R2</tabstop>
+  <tabstop>Set_Injuct_W4</tabstop>
+  <tabstop>Injuct_Count_W3</tabstop>
+  <tabstop>Set_Injuct_W1</tabstop>
+  <tabstop>Injuct_Count_W4</tabstop>
+  <tabstop>Injuct_Count_R2</tabstop>
+  <tabstop>Set_Injuct_W2</tabstop>
+  <tabstop>Injuct_Count_W1</tabstop>
+  <tabstop>Injuct_Count_M</tabstop>
+  <tabstop>Injuct_Count_R1</tabstop>
+  <tabstop>Set_Injuct_R1</tabstop>
  </tabstops>
  <resources/>
  <connections/>

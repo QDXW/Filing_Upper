@@ -39,31 +39,29 @@ private slots:
     void SearchPort();
     void Rrrorhandle(QSerialPort::SerialPortError a);
 
-    void on_Infusion_clicked();
-
-    void on_RECYCLE_clicked();
-
-    void on_L100_INJECT_clicked();
+    void on_PUMP_WASH_clicked();
 
     void on_Quit_clicked();
 
-    void on_Set_Injuct_1_clicked();
+    void on_Set_Injuct_R1_clicked();
 
-    void on_Set_Injuct_2_clicked();
+    void on_Set_Injuct_R2_clicked();
 
-    void on_Set_Injuct_3_clicked();
+    void on_Set_Injuct_M_clicked();
 
-    void on_Set_Injuct_4_clicked();
+    void on_Set_Injuct_W1_clicked();
 
-    void on_Set_Injuct_5_clicked();
+    void on_Set_Injuct_W2_clicked();
 
-    void on_Set_Injuct_6_clicked();
+    void on_Set_Injuct_W3_clicked();
 
-    void on_Set_Injuct_7_clicked();
+    void on_Set_Injuct_W4_clicked();
 
-//    void on_RETURN_ZERO_clicked();
+    void on_Set_Injuct_W5_clicked();
 
-//    void on_BUMP_INT_clicked();
+    void on_Set_Injuct_W6_clicked();
+
+    void on_Set_Injuct_Base_clicked();
 
     void on_L100_Filling_clicked();
 
