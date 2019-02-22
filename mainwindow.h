@@ -38,61 +38,14 @@ private slots:
     void ReadData();
     void SearchPort();
     void Rrrorhandle(QSerialPort::SerialPortError a);
-    void on_L100_Switch_clicked();
-    void on_Start_Appratus_clicked();
 
-    void on_Exhaust_AIR_clicked();
+    void on_Infusion_clicked();
 
     void on_RECYCLE_clicked();
 
     void on_L100_INJECT_clicked();
 
     void on_Quit_clicked();
-
-    void on_Apparatus_Temp_clicked();
-
-    void on_Apparatus_Time_clicked();
-
-    void on_Control_Temp1_clicked();
-
-    void on_Control_Temp2_clicked();
-
-    void on_Open_Carve_clicked();
-
-    void on_Close_Carve_clicked();
-
-    void on_Bumping_post1_clicked();
-
-    void on_Bumping_post2_clicked();
-
-    void on_Debug_clicked();
-    void on_Normal_clicked();
-
-    void on_AIR_Cylinder1_clicked();
-
-    void on_AIR_Cylinder2_clicked();
-
-    void on_AIR_Cylinder3_clicked();
-
-    void on_AIR_Cylinder4_clicked();
-
-    void on_Injuct_Bump1_clicked();
-
-    void on_Injuct_Bump2_clicked();
-
-    void on_Injuct_Bump3_clicked();
-
-    void on_Injuct_Bump4_clicked();
-
-    void on_Injuct_Bump5_clicked();
-
-    void on_Injuct_Bump6_clicked();
-
-    void on_Injuct_Bump7_clicked();
-
-    void on_Injuct_Bump_Allopen_clicked();
-
-    void on_Injuct_Bump_Allclose_clicked();
 
     void on_Set_Injuct_1_clicked();
 
@@ -108,9 +61,11 @@ private slots:
 
     void on_Set_Injuct_7_clicked();
 
-    void on_Press_Plate_clicked();
+//    void on_RETURN_ZERO_clicked();
 
-    void on_Set_Injuct_time_clicked();
+//    void on_BUMP_INT_clicked();
+
+    void on_L100_Filling_clicked();
 
 private:
     Ui::MainWindow *ui;
