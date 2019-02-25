@@ -32,7 +32,8 @@ SOURCES += \
         mainwindow.cpp \
         Qcustomplot/qcustomplot.cpp \
     Log/Log.cpp \
-    common/CRC16.c
+    common/CRC16.c \
+    editsize.cpp
 
 HEADERS += \
         Qcustomplot/qcustomplot.h \
@@ -40,10 +41,12 @@ HEADERS += \
     Log/Log.h \
     command.h \
     common/Common.h \
-    common/CRC16.h
+    common/CRC16.h \
+    editsize.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    editsize.ui
 INCLUDEPATH += Qcustomplot/
 
 TRANSLATIONS += i18n/Lidar_fr.ts \

@@ -14,10 +14,12 @@
 #include <QVector>
 #include <QPen>
 #include <QTimer>
+#include <QDialog>
 #include <QMessageBox>
 #include <command.h>
 #include "common/CRC16.h"
 #include "Signalprocess/qrcode.h"
+#include "editsize.h"
 
 namespace Ui {
 class MainWindow;
@@ -65,6 +67,7 @@ private slots:
 
     void on_L100_Filling_clicked();
 
+
 private:
     Ui::MainWindow *ui;
 
@@ -74,6 +77,7 @@ private:
     QList<float> SaveShowdata[300];              //保存表格数据
     int SaveShowdataIndex = 0;
 
+     EditSize *Edit_Vol;
     int index=0;
 
     QTimer *SearchPortT;                    //刷新端口定时器

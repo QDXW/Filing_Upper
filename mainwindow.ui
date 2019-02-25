@@ -192,6 +192,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="Injuct_Count_W2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>320</x>
@@ -280,6 +283,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="Injuct_Count_W3">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>850</x>
@@ -324,6 +330,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="Injuct_Count_W4">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>320</x>
@@ -346,6 +355,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="Injuct_Count_R2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>850</x>
@@ -393,6 +405,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="Injuct_Count_W1">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>850</x>
@@ -415,6 +430,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="Injuct_Count_M">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>320</x>
@@ -437,6 +455,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="Injuct_Count_R1">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>320</x>
@@ -506,6 +527,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="Injuct_Count_Base">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>850</x>
@@ -550,6 +574,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="Injuct_Count_W5">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>850</x>
@@ -594,6 +621,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="Injuct_Count_W6">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>320</x>
