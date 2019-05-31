@@ -1,0 +1,9 @@
+
+add 2019-05-23 09:41:22.680
+add 2019-05-23 15:33:55.470
+Warning: bool QSerialPort::clear(QSerialPort::Directions): device not open    0    2019-05-23 15:33:55.547
+Warning: bool QSerialPort::clear(QSerialPort::Directions): device not open    0    2019-05-23 15:33:55.754
+Warning: bool QSerialPort::clear(QSerialPort::Directions): device not open    0    2019-05-23 15:33:56.964
+Warning: bool QSerialPort::clear(QSerialPort::Directions): device not open    0    2019-05-23 15:33:57.175
+Warning: bool QSerialPort::clear(QSerialPort::Directions): device not open    0    2019-05-23 15:33:58.386
+Warning: bool QSerialPort::clear(QSerialPort::Directions): device not open    0    2019-05-23 15:33:58.590

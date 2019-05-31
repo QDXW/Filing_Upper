@@ -51,22 +51,16 @@ private slots:
 
     void on_Set_Injuct_M_clicked();
 
-    void on_Set_Injuct_W1_clicked();
+    void on_Set_Injuct_W_clicked();
 
-    void on_Set_Injuct_W2_clicked();
-
-    void on_Set_Injuct_W3_clicked();
-
-    void on_Set_Injuct_W4_clicked();
-
-    void on_Set_Injuct_W5_clicked();
-
-    void on_Set_Injuct_W6_clicked();
-
-    void on_Set_Injuct_Base_clicked();
+//    void on_Set_Injuct_Base_clicked();
 
     void on_L100_Filling_clicked();
 
+
+    void on_Padding_clicked();
+
+    void on_PUMP_WASH_All_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -77,7 +71,7 @@ private:
     QList<float> SaveShowdata[300];              //保存表格数据
     int SaveShowdataIndex = 0;
 
-     EditSize *Edit_Vol;
+    EditSize *Edit_Vol;
     int index=0;
 
     QTimer *SearchPortT;                    //刷新端口定时器

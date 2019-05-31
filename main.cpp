@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
     w.setSizePolicy(sizePolicy);
     w.setWindowOpacity(1);
     w.setWindowFlags(Qt::FramelessWindowHint);
-    w.setMinimumSize(QSize(1280, 800));
-    w.setMaximumSize(QSize(1280, 800));
+    w.setMinimumSize(QSize(1920, 1200));
+    w.setMaximumSize(QSize(1920, 1200));
     w.setWindowState(false);
 
     w.show();

@@ -23,6 +23,7 @@ int EditSize::ReturnEditSize()
 }
 void EditSize::SetEditSize(int size)
 {
+    ui->lineEdit->setFocus();
     ui->lineEdit->setText(tr("%1").arg(size));
 }
 

@@ -32,13 +32,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->Injuct_Count_R1->setValidator(new QIntValidator(1, 500, this));
     ui->Injuct_Count_R2->setValidator(new QIntValidator(1, 500, this));
     ui->Injuct_Count_M->setValidator(new QIntValidator(1, 500, this));
-    ui->Injuct_Count_W1->setValidator(new QIntValidator(1, 500, this));
-    ui->Injuct_Count_W2->setValidator(new QIntValidator(1, 100, this));
-    ui->Injuct_Count_W3->setValidator(new QIntValidator(1, 100, this));
-    ui->Injuct_Count_W4->setValidator(new QIntValidator(1, 100, this));
-    ui->Injuct_Count_W5->setValidator(new QIntValidator(1, 100, this));
-    ui->Injuct_Count_W6->setValidator(new QIntValidator(1, 100, this));
-    ui->Injuct_Count_Base->setValidator(new QIntValidator(1, 100, this));
+    ui->Injuct_Count_W->setValidator(new QIntValidator(1, 500, this));
+//    ui->Injuct_Count_Base->setValidator(new QIntValidator(1, 100, this));
 
     ui->L100_Filling->setText("开始罐装");
     Edit_Vol = new EditSize;
@@ -68,6 +63,10 @@ void MainWindow::on_Connect_Btn_clicked()
                 ui->Connect_Btn->setText("断开");
                 ui->COMSelectcomboBox->setEnabled(false);
                 SearchPortT->stop();
+                ui->L100_Filling->setText("开始罐装");
+                ui->PUMP_WASH->setText(tr("R1 R2 M清洗"));
+                ui->PUMP_WASH_All->setText(tr("全部清洗"));
+                ui->Padding->setText(tr("清洗液填充"));
 //                ui->groupBox->setEnabled(true);
             }
             else
@@ -216,8 +215,8 @@ void MainWindow::ReadData()
     static QByteArray ReadBuff;
     static QByteArray ReadBuff_All;
     quint8  stdid,RecvBuff[4096];
-    quint16 Datalength = 0,Total_Length = 0;
-    QString Str;
+    quint16 Datalength = 0,Total_Length = 0,Data_Recv = 0;
+    QString Str,Data_Vol;
     ReadBuff_All = SerialPort->readAll();
 
     /* 先拼接数据，得到完整数据，否则就退出舍弃本次数据 */
@@ -268,21 +267,94 @@ void MainWindow::ReadData()
     stdid = RecvBuff[4];
     switch(stdid)
     {
+    case CMD_CODE_CONNECT:
+        memcpy(&Data_Recv,&RecvBuff[6],2);
+        Data_Vol = QString::number(Data_Recv);
+        ui->Injuct_Count_R1->setText(Data_Vol);
+        memcpy(&Data_Recv,&RecvBuff[8],2);
+        Data_Vol = QString::number(Data_Recv);
+        ui->Injuct_Count_R2->setText(Data_Vol);
+        memcpy(&Data_Recv,&RecvBuff[10],2);
+        Data_Vol = QString::number(Data_Recv);
+        ui->Injuct_Count_M->setText(Data_Vol);
+        memcpy(&Data_Recv,&RecvBuff[12],2);
+        Data_Vol = QString::number(Data_Recv);
+        ui->Injuct_Count_W->setText(Data_Vol);
+        break;
+
     case CMD_CODE_BUMP_FILLING:
         if(RecvBuff[5])
+        {
+            ui->groupBox->setEnabled(false);
+            ui->groupBox_Wash->setEnabled(false);
+            ui->groupBox_Padding->setEnabled(false);
             ui->L100_Filling->setText(tr("正在罐装"));
+        }
         else
+        {
+            ui->groupBox->setEnabled(true);
+            ui->groupBox_Wash->setEnabled(true);
+            ui->groupBox_Padding->setEnabled(true);
             ui->L100_Filling->setText(tr("开始罐装"));
+        }
         break;
 
     case CMD_CODE_WASH:
         if(RecvBuff[5])
+        {
+            ui->groupBox_Filling->setEnabled(false);
+            ui->groupBox_Padding->setEnabled(false);
+            ui->groupBox_Wash_All->setEnabled(false);
             ui->PUMP_WASH->setText(tr("正在清洗"));
+        }
         else
-            ui->PUMP_WASH->setText(tr("开始清洗"));
+        {
+            ui->groupBox_Filling->setEnabled(true);
+            ui->groupBox_Padding->setEnabled(true);
+            ui->groupBox_Wash_All->setEnabled(true);
+            ui->PUMP_WASH->setText(tr("R1 R2 M清洗"));
+        }
         break;
 
-        default:
+    case CMD_CODE_WASH_ALL:
+        if(RecvBuff[5])
+        {
+            ui->groupBox_Filling->setEnabled(false);
+            ui->groupBox_Padding->setEnabled(false);
+            ui->groupBox_Wash->setEnabled(false);
+            ui->PUMP_WASH_All->setText(tr("正在清洗全部"));
+        }
+        else
+        {
+            ui->groupBox_Filling->setEnabled(true);
+            ui->groupBox_Padding->setEnabled(true);
+            ui->groupBox_Wash->setEnabled(true);
+            ui->PUMP_WASH_All->setText(tr("全部清洗"));
+        }
+        break;
+
+    case CMD_CODE_WASH_PADDING:
+        if(RecvBuff[5])
+        {
+            ui->groupBox->setEnabled(false);
+            ui->groupBox_Wash->setEnabled(false);
+            ui->groupBox_Filling->setEnabled(false);
+            ui->Padding->setText(tr("正在填充"));
+        }
+        else
+        {
+            ui->groupBox->setEnabled(true);
+            ui->groupBox_Wash->setEnabled(true);
+            ui->groupBox_Filling->setEnabled(true);
+            ui->Padding->setText(tr("清洗液填充"));
+        }
+        break;
+
+    case CMD_CODE_PADDING_PREARE_ACHIEVE:
+        ui->groupBox_Padding->setEnabled(true);
+        break;
+
+    default:
         break;
      }
      ReadBuff.clear();
@@ -291,7 +363,7 @@ void MainWindow::ReadData()
 void MainWindow::on_PUMP_WASH_clicked()
 {
     quint8 DATA = 1;
-    if(ui->PUMP_WASH->text()==tr("开始清洗"))
+    if(ui->PUMP_WASH->text()==tr("R1 R2 M清洗"))
     {
        CommandSend(1,CMD_TYPE_APP, CMD_CODE_WASH,&DATA);
     }
@@ -354,109 +426,18 @@ void MainWindow::on_Set_Injuct_M_clicked()
     }
 }
 
-void MainWindow::on_Set_Injuct_W1_clicked()
+void MainWindow::on_Set_Injuct_W_clicked()
 {
     quint16 DATA = 0;
     quint8 Buf[2] = {0};
-    Edit_Vol->SetEditSize(ui->Injuct_Count_W1->text().toInt());
+    Edit_Vol->SetEditSize(ui->Injuct_Count_W->text().toInt());
     /*显示并编辑*/
     if(Edit_Vol->exec() == 1)
     {
-        ui->Injuct_Count_W1->setText(tr("%1").arg(Edit_Vol->ReturnEditSize()));
-        DATA = ui->Injuct_Count_W1->text().toInt();
+        ui->Injuct_Count_W->setText(tr("%1").arg(Edit_Vol->ReturnEditSize()));
+        DATA = ui->Injuct_Count_W->text().toInt();
         memcpy(Buf,&DATA,2);
-        CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_W1,Buf);
-    }
-}
-
-void MainWindow::on_Set_Injuct_W2_clicked()
-{
-    quint16 DATA = 0;
-    quint8 Buf[2] = {0};
-
-    Edit_Vol->SetEditSize(ui->Injuct_Count_W2->text().toInt());
-    /*显示并编辑*/
-    if(Edit_Vol->exec() == 1)
-    {
-        ui->Injuct_Count_W2->setText(tr("%1").arg(Edit_Vol->ReturnEditSize()));
-        DATA = ui->Injuct_Count_W2->text().toInt();
-        memcpy(Buf,&DATA,2);
-        CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_W2,Buf);
-    }
-}
-
-void MainWindow::on_Set_Injuct_W3_clicked()
-{
-    quint16 DATA = 0;
-    quint8 Buf[2] = {0};
-    Edit_Vol->SetEditSize(ui->Injuct_Count_W3->text().toInt());
-    /*显示并编辑*/
-    if(Edit_Vol->exec() == 1)
-    {
-        ui->Injuct_Count_W3->setText(tr("%1").arg(Edit_Vol->ReturnEditSize()));
-        DATA = ui->Injuct_Count_W3->text().toInt();
-        memcpy(Buf,&DATA,2);
-        CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_W3,Buf);
-    }
-}
-
-void MainWindow::on_Set_Injuct_W4_clicked()
-{
-    quint16 DATA = 0;
-    quint8 Buf[2] = {0};
-    Edit_Vol->SetEditSize(ui->Injuct_Count_W4->text().toInt());
-    /*显示并编辑*/
-    if(Edit_Vol->exec() == 1)
-    {
-        ui->Injuct_Count_W4->setText(tr("%1").arg(Edit_Vol->ReturnEditSize()));
-        DATA = ui->Injuct_Count_W4->text().toInt();
-        memcpy(Buf,&DATA,2);
-        CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_W4,Buf);
-    }
-}
-
-void MainWindow::on_Set_Injuct_W5_clicked()
-{
-    quint16 DATA = 0;
-    quint8 Buf[2] = {0};
-    Edit_Vol->SetEditSize(ui->Injuct_Count_W5->text().toInt());
-    /*显示并编辑*/
-    if(Edit_Vol->exec() == 1)
-    {
-        ui->Injuct_Count_W5->setText(tr("%1").arg(Edit_Vol->ReturnEditSize()));
-        DATA = ui->Injuct_Count_W5->text().toInt();
-        memcpy(Buf,&DATA,2);
-        CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_W5,Buf);
-    }
-}
-
-void MainWindow::on_Set_Injuct_W6_clicked()
-{
-    quint16 DATA = 0;
-    quint8 Buf[2] = {0};
-    Edit_Vol->SetEditSize(ui->Injuct_Count_W6->text().toInt());
-    /*显示并编辑*/
-    if(Edit_Vol->exec() == 1)
-    {
-        ui->Injuct_Count_W6->setText(tr("%1").arg(Edit_Vol->ReturnEditSize()));
-        DATA = ui->Injuct_Count_W6->text().toInt();
-        memcpy(Buf,&DATA,2);
-        CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_W6,Buf);
-    }
-}
-
-void MainWindow::on_Set_Injuct_Base_clicked()
-{
-    quint16 DATA = 0;
-    quint8 Buf[2] = {0};
-    Edit_Vol->SetEditSize(ui->Injuct_Count_Base->text().toInt());
-    /*显示并编辑*/
-    if(Edit_Vol->exec() == 1)
-    {
-        ui->Injuct_Count_Base->setText(tr("%1").arg(Edit_Vol->ReturnEditSize()));
-        DATA = ui->Injuct_Count_Base->text().toInt();
-        memcpy(Buf,&DATA,2);
-        CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_BASE,Buf);
+        CommandSend(2,CMD_TYPE_APP, CMD_CODE_INJUCET_VOLUME_W,Buf);
     }
 }
 
@@ -465,33 +446,41 @@ void MainWindow::on_L100_Filling_clicked()
     quint8 DATA = 1;
     if(ui->L100_Filling->text()=="开始罐装")
     {
-       ui->L100_Filling->setText("正在罐装");
        CommandSend(1,CMD_TYPE_APP, CMD_CODE_BUMP_FILLING,&DATA);
     }
     else
     {
-       DATA = 0;
-       ui->L100_Filling->setText("开始罐装");
-       CommandSend(1,CMD_TYPE_APP, CMD_CODE_BUMP_FILLING,&DATA);
+        ui->L100_Filling->setText(tr("开始罐装"));
     }
 }
 
-//void MainWindow::on_RETURN_ZERO_clicked()
-//{
-//    quint8 Buf[2] = {0};
-//    CommandSend(2,CMD_TYPE_APP, CMD_CODE_RETURN_ZERO,Buf);
-//}
+void MainWindow::on_Padding_clicked()
+{
+    quint8 DATA = 1;
+    if(ui->Padding->text()=="清洗液填充")
+    {
+       ui->groupBox_Padding->setEnabled(false);
+       CommandSend(1,CMD_TYPE_APP, CMD_CODE_WASH_PADDING,&DATA);
+    }
+    else
+    {
+         DATA = 0;
+        ui->Padding->setText(tr("清洗液填充"));
+        CommandSend(1,CMD_TYPE_APP, CMD_CODE_WASH_PADDING,&DATA);
+    }
+}
 
-//void MainWindow::on_BUMP_INT_clicked()
-//{
-//    quint8 DATA = 1;
-//    if(ui->BUMP_INT->text()==tr("初始化泵"))
-//    {
-//       CommandSend(1,CMD_TYPE_APP, CMD_CODE_BUMP_INT,&DATA);
-//    }
-//    else
-//    {
-//       DATA = 0;
-//       CommandSend(1,CMD_TYPE_APP, CMD_CODE_BUMP_INT,&DATA);
-//    }
-//}
+void MainWindow::on_PUMP_WASH_All_clicked()
+{
+    quint8 DATA = 1;
+    if(ui->PUMP_WASH_All->text()=="全部清洗")
+    {
+       CommandSend(1,CMD_TYPE_APP, CMD_CODE_WASH_ALL,&DATA);
+    }
+    else
+    {
+        DATA = 0;
+        ui->PUMP_WASH_All->setText(tr("全部清洗"));
+        CommandSend(1,CMD_TYPE_APP, CMD_CODE_WASH_ALL,&DATA);
+    }
+}

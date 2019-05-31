@@ -1,0 +1,13 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\qcustomplot.o
+./debug\Log.o
+./debug\CRC16.o
+./debug\editsize.o
+./debug\qrc_translations.o
+./debug\qrc_ver.o
+./debug\moc_qcustomplot.o
+./debug\moc_mainwindow.o
+./debug\moc_editsize.o
+);
